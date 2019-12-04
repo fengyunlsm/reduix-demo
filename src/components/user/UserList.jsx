@@ -22,25 +22,36 @@ export default class UserList extends React.Component {
     return true
   }
   render() {
-    // 获取所有用户信息
+
+    let divHeader = {
+      width: "50%",
+      margin: "0 auto"
+    }
+
+    let buttonStyle = {
+      display: "inline-block",
+      position: "absolute",
+      right: "0px"
+    }
+
     let userList = []
     for (let user of this.state.users) {
       let userid = user.id
-      console.log('userid: ', user.id)
       let path = `/user/${userid}`
 
-      console.log('path: ', path)
       userList.push(
-        <li key={user.id} className="list-group-item" ref="key">
+        <li key={user.id} className="list-group-item" ref="key" >
         {user.username + ',' + user.location}
-          <div className="btn btn-primary" ><Link to={path} history={this.props.history}>view</Link></div>
-          <div className="btn btn-primary" onClick={this.delUser.bind(this, user.id)}>delete</div>
+        <div style={buttonStyle}>
+          <div className="btn btn-outline-primary" ><Link to={path} history={this.props.history}>view</Link></div>
+          <div className="btn btn-outline-secondary" onClick={this.delUser.bind(this, user.id)}>delete</div>
+        </div>
         </li>
       )
     }
 
 
-    return <div>
+    return <div style={divHeader}>
         <ul className="list-group list-group-flush">
          {userList}
        </ul>

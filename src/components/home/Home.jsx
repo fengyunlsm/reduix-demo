@@ -7,8 +7,12 @@ export default class Home extends React.Component {
   }
 
   render() {
+    let homeStyle = {
+      margin: "0 auto",
+      width: "50%"
+    }
     return <div>
-      <h1>首页</h1>
+      <h1 style={homeStyle}>首页<h1>
     </div>
   }
 }

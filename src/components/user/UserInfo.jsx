@@ -7,12 +7,17 @@ export default class UserInfo extends React.Component {
     this.state = {
       username: '',
       location: ''
-        }
+    }
   }
 
 
   render() {
-    return <div >
+    let divStyle = {
+      margin: "0 auto",
+      width: "50%"
+    }
+
+    return <div style={divStyle}>
         <form onSubmit={this.addUser.bind(this)}>
         <div className="form-group">
           <label >Username</label>

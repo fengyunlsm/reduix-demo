@@ -39,7 +39,12 @@ export default class UserModified extends React.Component {
     }
   }
   render() {
-    return <div >
+    let divStyle = {
+      margin: "0 auto",
+      width: "50%"
+    }
+
+    return <div style={divStyle}>
         <form >
         <div className="form-group">
           <label >Username</label>

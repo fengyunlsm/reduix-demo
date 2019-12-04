@@ -14,6 +14,16 @@ function reducer(state=initState,action) {
     return user.id != action.playload.id
   }
 
+  function getUser (user) {
+
+    return user.id === action.playload.id
+  }
+
+  function getOtherUser(user) {
+    // 获取非此id的数据
+    return user.id != action.playload.id
+  }
+
   switch (action.type) {
     case ADD_USER:
        newState = {
@@ -23,6 +33,7 @@ function reducer(state=initState,action) {
          ]
        }
        break
+
     case DEL_USER:
       //  删除某个用户
       console.log('触发删除')
@@ -33,15 +44,25 @@ function reducer(state=initState,action) {
         ]
       }
       break
-    case UPDATE_USER:
-        console.log('触发修改')
-        function getUser (user) {
-          return user.id === id
-        }
 
-        newState = {
-          // 触发更新 节奏不一样的
-        }
+    case UPDATE_USER:
+      console.log('触发修改')
+      let oneUser = state.users.filter(getUser)
+      // 修改数据
+      oneUser[0].username = action.playload.username
+      oneUser[0].location = action.playload.location
+
+      let otherUser = state.users.filter(getOtherUser)
+      console.log('otherUser: ', otherUser)
+
+      newState = {
+        users: [
+          ...oneUser,
+          ...otherUser
+        ]
+      }
+      break
+
     default:
       newState = state
       break
